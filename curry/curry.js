@@ -117,5 +117,23 @@ describe ('Adding numbers', function () {
     assert.equal(three(four)(three(four)), 14);
 
   });
+
+  it('should be smarter', function () {
+
+    var add = function (orig) {
+      var inner = function (val) {
+        return add( (+val || 0) + (+orig || 0) );
+      };
+      inner.valueOf = function () {return +orig || 0;};
+
+      return inner;
+    };
+
+    assert.equal(add(2)(0)(3), 5);
+    assert.equal(add(0)(0.5), 0.5);
+    assert.equal(add('aa')(1), 1);
+    assert.equal(add('aa'), 0);
+  });
+
 });
 
