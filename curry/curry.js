@@ -135,5 +135,26 @@ describe ('Adding numbers', function () {
     assert.equal(add('aa'), 0);
   });
 
+  it('should be even smarter', function () {
+
+    var sum = function (args) {
+      return Array.prototype.slice.call(args).reduce(function (m, el) { return m + el; }, 0);
+    };
+
+    var add = function () {
+      var orig = sum(arguments);
+      var inner = function () {
+        var val = sum(arguments);
+        
+        return add((+val || 0) + (+orig || 0));
+      };
+      inner.valueOf = function () {return +orig || 0;};
+
+      return inner;
+    };
+
+    assert.equal(add(2, 4, 6)(3)(2,3), 20);
+  });
+
 });
 
