@@ -118,7 +118,7 @@ describe ('Adding numbers', function () {
 
   });
 
-  it('should be smarter', function () {
+  it('should be smarter (contributed by ashtuchkin)', function () {
 
     var add = function (orig) {
       var inner = function (val) {
@@ -135,7 +135,7 @@ describe ('Adding numbers', function () {
     assert.equal(add('aa'), 0);
   });
 
-  it('should be even smarter', function () {
+  it('should be even smarter (contributed by f0rk)', function () {
 
     var sum = function (args) {
       return Array.prototype.slice.call(args).reduce(function (m, el) { return m + el; }, 0);
