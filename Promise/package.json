@@ -1,0 +1,14 @@
+{
+  "name": "Promise",
+  "version": "0.0.1",
+  "description": "Promise excercise",
+  "main": "promise_module.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Nick Makarov <nmakarov@gmail.com> (http://nmakarov.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "promise": "^5.0.0"
+  }
+}

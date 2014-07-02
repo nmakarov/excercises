@@ -154,6 +154,8 @@ describe ('Adding numbers', function () {
     };
 
     assert.equal(add(2, 4, 6)(3)(2,3), 20);
+    assert.equal(add(2)('a'), 2);
+    assert.equal(add(2)()('aaa'), 2);
   });
 
 });
