@@ -25,3 +25,47 @@ Get back all to last commit
 ```
 git reset --hard
 ```
+
+### Not so Git stuff
+
+# fun with `ls` colors
+
+```
+LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd" ls -laG
+```
+
+Now you have control over `ls` colored output!
+
+And colors, for reference:
+
+a = black
+b = red
+c = green
+d = brown
+e = blue
+f = magenta
+g = cyan
+h = grey
+A = dark grey
+B = bold red
+C = bold green
+D = yellow
+E = bold blue
+F = magenta
+G = cyan
+H = white
+x = default
+
+and order
+
+directory
+symbolic link
+socket
+pipe
+executable
+block device
+character device
+executable with setuid set
+executable with setguid set
+directory writable by others, with sticky bit
+directory writable by others, without sticky bit
