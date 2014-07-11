@@ -25,4 +25,3 @@ While the description in *curry/curry.md* is in Russian, *curry.js* is fairly st
 How to run: 
 
     mocha curry
-

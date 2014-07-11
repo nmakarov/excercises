@@ -1,5 +1,4 @@
 ### differences with the previous commit
-
 You just did `git pull`, saw a few files changed and would like to know exact details
 
 ```
@@ -69,3 +68,36 @@ executable with setuid set
 executable with setguid set
 directory writable by others, with sticky bit
 directory writable by others, without sticky bit
+
+
+## Sublime Text
+
+Make it available from the CLI:
+```
+sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/sublime
+```
+
+now just `sublime .` being in the desired folder would do the trick.
+
+
+Cmd-K Cmd-B - open/close sidebar (yes, it is a two-stroke command)
+
+## Mocha
+
+Installation is dead simple
+
+```
+sudo npm install mocha -g
+```
+
+Start using it right away:
+
+```
+echo -e "var assert=require('assert');\ndescribe('cool', function () {\n  function it ('things happen', function () {assert.equal(2+2, 4);})});" > test.js ; mocha test.js
+```
+
+Get reporters list `mocha --reporters` and use one of them like so:
+```
+mocha -R spec .
+```
+
