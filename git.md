@@ -11,3 +11,17 @@ git diff HEAD@{1} filename
 git diff --name-only HEAD@{1}
 ```
 
+Get back one file
+
+```
+git checkout filename
+
+#if `filename` matches branch name:
+git checkout -- filename
+```
+
+Get back all to last commit
+
+```
+git reset --hard
+```
