@@ -16,6 +16,15 @@ describe ('Crazy take #1', function () {
     assert({} + [] !== true);
   });
 
+  it('[] + 12', function () {
+    assert([] + 12 === "12");
+    assert.equal(typeof ([] + 12), 'string');
+  });
+
+  it('{} + 12', function () {
+    assert({} + 12 !== "12");
+  });
+
   it ('new Boolean(false) === ?', function () {
     var b = new Boolean(false);
     assert.equal(b.valueOf(), false);
