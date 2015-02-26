@@ -55,6 +55,7 @@ describe ('Crazy take #1', function () {
     assert.equal( []  === 0, false); // yep, expected, right?
     assert.equal(+[]  === 0, true);  // wow
     assert.equal(+[8] === 8, true);  // wow
+    assert.equal(+[[[8]]] === 8, true);  // wow
   });
 
   it('valueOf crap', function () {
@@ -77,5 +78,11 @@ describe ('Crazy take #1', function () {
 
     // in other words,
     assert.equal(!!o !== +0, true);
+  });
+
+  it('the whole thing about reliably identify the type of some variable', function () {
+    // just a stub here,
+    // explore instanceof, typeof, variable.constructor etc. Be careful with null/undefined.
+    // also see Functions/integers.js as well.
   });
 });
