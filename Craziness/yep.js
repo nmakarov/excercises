@@ -100,4 +100,36 @@ describe ('Crazy take #1', function () {
     }
     assert.equal(f, true);
   });
+
+  it('arguments craziness', function () {
+    var f1 = function (p1, p2) {
+      return p2;
+    };
+
+    assert.equal(f1(3,4), 4);
+    assert.equal(typeof f1(3), 'undefined');
+
+    var f2 = function (p1, p2) {
+      arguments[1] = p1;
+      return p2;
+    };
+
+    assert.equal(f2(3,4), 3);
+    assert.equal(typeof f2(3), 'undefined');
+
+    var f3 = function (p1, p2) {
+       p2 = p1;
+      return arguments[1];
+    };
+
+    assert.equal(f3(3,4), 3);
+    assert.equal(typeof f3(3), 'undefined');
+
+    // why? if called as `f2('a', 'b')`, both parameters goes into array-like arguments thing 
+    // and pointers to that assigned to p1 and p2 respectively. In other words manipulation 
+    // with `p2` or `arguments[1]` affects the same memory area.
+    // And if called as `f2('a')`, memory area for the second parameter is not allocated; 
+    // `arguments[1]` does not exist. `arguments[1]` and p2 are not connected.
+
+  });
 });
