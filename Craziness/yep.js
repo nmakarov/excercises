@@ -85,4 +85,19 @@ describe ('Crazy take #1', function () {
     // explore instanceof, typeof, variable.constructor etc. Be careful with null/undefined.
     // also see Functions/integers.js as well.
   });
+
+  it('Array as a hash? Hell yeah', function () {
+    var a = ['a','b','c','d','e'];
+    assert.equal('3' in a, true);
+    // why?
+    // 1. `in` looks for a specific key in hash, so array coerces to hash, indexes become keys.
+    // 2. `3` - string, object keys are strings, so the fourth element is easily found.
+    var f = false;
+    for (var k in a) {
+      if (k === '3') {
+        f = true;
+      }
+    }
+    assert.equal(f, true);
+  });
 });
