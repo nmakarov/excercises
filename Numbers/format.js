@@ -10,9 +10,13 @@ var numbers = [
   [123, '123'],
   [1234, '1,234'],
   [1234567890.23, '1,234,567,890.23'],
+  [-1234567.89, '-1,234,567.89'],
 ];
 
+
+
 describe('Formatting numbers', function () {
+
 
   it('regexp', function () {
 
@@ -23,6 +27,7 @@ describe('Formatting numbers', function () {
     numbers.forEach(function (pair) {
       assert.equal(fmt(pair[0]), pair[1]);
     });
+
   });
 
 
@@ -31,7 +36,6 @@ describe('Formatting numbers', function () {
 
     var fmt = function (number) {
 
-      // massage input
       number = '' + number;
 
       var dotPosition = number.indexOf('.') !== -1 ? number.indexOf('.') : 999999;
