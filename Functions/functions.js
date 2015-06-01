@@ -307,3 +307,28 @@ describe('Classes, classy approach', function () {
 
 });
 
+describe ('classes, generators', function () {
+  it('Extendable', function () {
+
+    // props/methods are not copied.
+    var simpleExtend = function (Parent) {
+      var Mediator = function () {};
+      Mediator.prototype = Parent.prototype;
+
+      var C = function () {};
+      C.prototype = new Mediator();
+      C.prototype.constructor = C;
+
+      return C;
+    };
+
+    var Parent = function () {};
+    var Child = simpleExtend(Parent);
+    var child = new Child();
+
+    assert.equal(true, child instanceof Child);
+    assert.equal(true, child instanceof Parent);
+    assert.equal(Child.prototype.constructor, Child);
+  });
+});
+
