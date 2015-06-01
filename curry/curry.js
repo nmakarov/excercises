@@ -145,7 +145,7 @@ describe ('Adding numbers', function () {
       var orig = sum(arguments);
       var inner = function () {
         var val = sum(arguments);
-        
+
         return add((+val || 0) + (+orig || 0));
       };
       inner.valueOf = function () {return +orig || 0;};

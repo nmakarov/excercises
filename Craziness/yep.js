@@ -8,6 +8,8 @@
 // That's just mean.
 // ===============================================================================
 
+// well the whole thing in this excercise is about coersion, so be carefull.
+
 var assert = require('assert');
 
 describe ('Crazy take #1', function () {

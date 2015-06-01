@@ -61,8 +61,14 @@ describe ('Prototypes', function () {
     assert.equal(p2 instanceof P2, true);
     assert.equal(p2 instanceof P1, true);
 
+    // these not work because `p1` is instantiated _before_ prototype chain was setup:
     assert.equal(p1 instanceof P2, false); // why?
     assert.equal(p1 instanceof P1, false); // why?
+
+    // and now is ok, because `p1After` is created just now:
+    var p1After = new P1();
+    assert.equal(p1After instanceof P1, true);
+    assert.equal(p1After instanceof P2, true);
 
   });
 
@@ -94,11 +100,20 @@ describe ('Prototypes', function () {
   describe('Functions', function () {
     var f = function () {return this;};
     var o = {key: 'value', f: function () {return this;}};
-    describe('has different contexts (this)', function () {
-      it('standalone: global', function () {
-        assert.equal(f().process.title, 'node');
+
+    // helper function
+    var isNodeOrIOJS = function (string) {
+        return !! string.match(/node|iojs/);
+    };
+    describe('have different contexts (this)', function () {
+
+      it('watch this crap:', function () {
+        // here: borrowing the function, not the context of it:
+        var fi = o.f;
+        assert.equal(isNodeOrIOJS(fi().process.title), true);
+        // wow
+        // it is because the context solely depends on how you call a function.
       });
-      // console.info('this:',this.constructor);
 
       it ('apply/call: whatever you pass as a first arg', function () {
         assert.equal(f.call(4), 4);
@@ -106,20 +121,17 @@ describe ('Prototypes', function () {
       });
 
       it ('apply/call: global if you pass nothing', function () {
-        assert.equal(f.call().process.title, 'node');
-        assert.equal(f.call(undefined).process.title, 'node');
-        assert.equal(f.call(null).process.title, 'node');
+        assert.equal(isNodeOrIOJS(f.call().process.title), true);
+        assert.equal(isNodeOrIOJS(f.call(undefined).process.title), true);
+        assert.equal(isNodeOrIOJS(f.call(null).process.title), true);
       });
 
       it('as a method: the object', function () {
         assert.equal(o.f().key, 'value');
       });
 
-      it('watch this crap:', function () {
-        var fi = o.f;
-        assert.equal(fi().process.title, 'node');
-        // wow
-        // it is because the context solely depends on how you call a function.
+      it('standalone: global', function () {
+        assert.equal(isNodeOrIOJS(f().process.title), true);
       });
 
       it('universal solution: bind it!', function () {
@@ -131,6 +143,7 @@ describe ('Prototypes', function () {
         assert.equal(bindedF().key, 'value');
       });
     });
+
   });
 });
 

@@ -34,7 +34,7 @@ describe ('Functions', function () {
   // figovina
   describe('with two args', function () {
     it ('should demonstrate `out of scope` thingy', function () {
-      assert.equal(typeof double, 'undefined');      
+      assert.equal(typeof double, 'undefined');
     });
   });
 
@@ -78,7 +78,7 @@ describe ('Functions', function () {
       var makeDouble = function (aFn) {
         var glob = (1, eval)(this);
         aFn.b = 5;
-        
+
         // right here: link is about to be broken between a ref variable name `aFn` and whatever it was pointed to.
         aFn = function () {
           return 4;
