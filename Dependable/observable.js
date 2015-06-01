@@ -1,3 +1,4 @@
+/*
 (function () {
   'use strict';
 
@@ -26,3 +27,4 @@ observable(c);
 
 observable(5);
 
+*/

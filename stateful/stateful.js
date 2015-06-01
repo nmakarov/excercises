@@ -36,7 +36,7 @@ Stateful.prototype.runChecks = function () {
         delete(that.waitingFunctions[i]);
       }
     } else {
-      funcObject.charged = true;      
+      funcObject.charged = true;
     }
   });
 };
