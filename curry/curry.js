@@ -46,6 +46,31 @@ describe ('Adding numbers', function () {
     // assert.equal(add2(10)(), 12);
   });
 
+  it ("Cris's test for his interview", function () {
+    var add = function (a) {
+      var sum = a;
+      var inner = function (b) {
+        if ( ! isNaN(b)) {
+          sum += b;
+          return inner;
+        } else {
+          return sum;
+        }
+      };
+      // just this line is different from the previous variant.
+      return typeof a === "undefined" ? 0 : inner;
+    };
+
+    assert.equal(add(), 0);
+    assert.equal(add(3)(2)(), 5);
+    var sum10 = add(2)(4)(4);
+    assert.equal(typeof sum10 , 'function');
+    assert.equal(sum10(), 10);
+    var sum13 = sum10(3);
+    assert.equal(sum13(), 13);
+    assert.equal(sum13(-4)(), 9);
+  });
+
   it ('should not have a pair of extra parenthesis', function () {
     var add = function (a) {
       var sum = a;
