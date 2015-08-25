@@ -181,6 +181,18 @@ describe ('Adding numbers', function () {
     assert.equal(add(2, 4, 6)(3)(2,3), 20);
     assert.equal(add(2)('a'), 2);
     assert.equal(add(2)()('aaa'), 2);
+
+
+    // these are for Chris as well:
+    assert.equal(add(), 0);
+    assert.equal(add(3)(2)(), 5);
+    var sum10 = add(2)(4)(4);
+    assert.equal(typeof sum10 , 'function');
+    assert.equal(sum10(), 10);
+    var sum13 = sum10(3);
+    assert.equal(sum13(), 13);
+    assert.equal(sum13(-4)(), 9);
+
   });
 
 });
