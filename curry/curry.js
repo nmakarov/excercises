@@ -166,9 +166,9 @@ describe ('Adding numbers', function () {
       return Array.prototype.slice.call(args).reduce(function (m, el) { return m + el; }, 0);
     };
 
-    var add = function () {
+    var add = function (/* some arguments to be added */) {
       var orig = sum(arguments);
-      var inner = function () {
+      var inner = function (/* some arguments to be added */) {
         var val = sum(arguments);
 
         return add((+val || 0) + (+orig || 0));
