@@ -1,0 +1,23 @@
+{
+  "name": "excercises",
+  "version": "1.0.0",
+  "description": "Excercises ==========",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmakarov/excercises.git"
+  },
+  "author": "Nick Makarov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmakarov/excercises/issues"
+  },
+  "homepage": "https://github.com/nmakarov/excercises#readme"
+}
