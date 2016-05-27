@@ -99,7 +99,56 @@ describe ("various tasks", function () {
 		selected = object.slice(2, 4); // get elements (two) between these two indexes
 		expect(object).to.be.deep.equal(['a', 'b', 'c', 'd', 'e']); // original array is unchanged
 		expect(selected).to.be.deep.equal(['c', 'd']);
+	});
 
+
+	it("fun with arrays 3", function () {
+		var arr = [1,3,5];
+		var str = "string, eh";
+		assert.equal(Object.prototype.toString.apply(arr), '[object Array]');
+		assert.equal(Object.prototype.toString.apply(str), '[object String]');
+	});
+
+	it("crazy", function () {
+		var x = 5;
+		delete x; // `delete` affects object props, not objects themselves
+		assert.equal(x, 5);
+
+		var y = {inner: 5};
+		var z = Object.create(y);
+
+		delete z.inner;
+		assert.equal(z.inner, 5); // <--- delete doesn't delete props from prototype
+
+
+		var arr = [1,3,5,7,9];
+		assert.equal(arr.length, 5);
+		delete arr[2];
+		assert.equal(arr.length, 5);
+		assert.equal(arr[2], undefined);
+	});
+
+	it("coesion", function () {
+		assert.equal("1" + "2", "12");
+		assert.equal("1" + 2, "12");
+		assert.equal(1 + "2", "12");
+		assert.equal("1" + true, "1true");
+		assert.equal("1" + false, "1false");
+		assert.equal(true + "1", "true1");
+		assert.equal(false + "1", "false1");
+
+		assert.equal(1 + true, 2);
+		assert.equal(true + 1, 2);
+		assert.equal(1 + false, 1);
+		assert.equal(false + 1, 1);
+	});
+
+	it("associativity", function () {
+		var a,b;
+		a = 1;
+		b = a = typeof (b); // right-to-left, so `b` gets defined after `typeof` inspects it.
+
+		assert.equal(b, 'undefined');
 	});
 
 });

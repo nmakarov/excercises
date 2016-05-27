@@ -332,3 +332,16 @@ describe ('classes, generators', function () {
 	});
 });
 
+describe ("visibility", function () {
+	it("refs", function () {
+		var func = function ref () {
+			assert.equal(typeof func, 'function');
+			assert.equal(typeof ref, 'function');
+		};
+
+		func();
+		assert.equal(typeof func, 'function');
+		assert.equal(typeof ref, 'undefined');
+	});
+});
+
