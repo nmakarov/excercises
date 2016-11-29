@@ -245,3 +245,27 @@ describe ("Crazy take #4", function () {
 	});
 });
 
+describe ("NaN, anyone?", function () {
+	it("when x !== x ?", function () {
+		var x = 5;
+		expect(x !== x, false, "obvious, isn't it");
+		x = NaN;
+		expect(x !== x, true, "what?!");
+	});
+});
+
+describe ("null – what is it", function () {
+	it("is an object?", function () {
+		var a = null;
+		expect (typeof a, "object");
+	});
+
+	it("is not an object?", function () {
+		var a = null;
+		try {
+			Object.keys(a);
+		} catch (err) {
+			expect ( err ).to.be.an.instanceof ( TypeError ); // what?!
+		}
+	});
+});
