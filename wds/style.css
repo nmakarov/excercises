@@ -1,0 +1,40 @@
+body {
+    background: green;
+}
+
+input {
+	display: inline-block;
+	font-size: 16px;
+	padding:5px;
+	margin: 10px;
+	color: blue;
+}
+
+.btn {
+    display: inline-block;
+	background-color: #4CAF50; /* Green */
+    color: #275929;
+    padding: 15px 32px;
+    text-align: center;
+    vertical-align:middle;
+
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 100px;
+
+    width: 200px;
+	padding-right: 25px;
+
+    border: 2px solid #306F33;
+
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+
+.btn:hover {
+	background-color: #63E368;
+}
+
