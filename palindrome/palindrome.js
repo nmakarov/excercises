@@ -20,6 +20,7 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "reduce solution");
+		// 1.062ms, yes, reduce is not particularly fast
 	});
 
 	it("reduce solution, walking half the string", () => {
@@ -32,6 +33,7 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "reduce solution, walking half the string");
+		// 0.642ms, half the time, as expected
 	});
 
 	it("just reverse the string", () => {
@@ -42,6 +44,7 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "just reverse the string");
+		// 0.335ms
 	});
 
 	it("rudimentary 'for' loop", () => {
@@ -57,6 +60,7 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "rudimentary 'for' loop");
+		// 0.407ms – good old trustworthy loop
 	});
 
 	it("optimized 'for' loop", () => {
@@ -72,6 +76,7 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "optimized 'for' loop");
+		// 0.284ms - taking out calculations out of the loop body does miracles
 	});
 
 	it("optimized 'for' loop #2", () => {
@@ -87,6 +92,24 @@ describe("palindrome tests", () => {
 		assert.equal(palindrome("abcbb"), false);
 
 		timing(palindrome, "optimized 'for' loop #2");
+		// 0.448ms - what?! taking out division (expensive op!) out of the loop body actually slows it down...
 	});
+
+	it("optimized 'for' loop #3", () => {
+		const palindrome = s => {
+			for (let l=s.length, l2=Math.floor(l/2), i = 0; i < l2; i++) {
+				if (s[i] !== s[l-1-i]) {
+					return false;
+				}
+			}
+			return true;
+		}
+		assert.equal(palindrome("abcba"), true);
+		assert.equal(palindrome("abcbb"), false);
+
+		timing(palindrome, "optimized 'for' loop #3");
+		// 0.281ms - aha, comparing an integer to a float is expensive, too. Pre-converting float to integer fixed it.
+	});
+
 
 });
