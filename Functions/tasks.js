@@ -181,4 +181,18 @@ describe ("various tasks", function () {
 		assert.throws(goingToThrow);
 	});
 
+	it("reduce as map", () => {
+		// multiply every number in array
+		const arr = [1,3,5,7,9];
+		const timesTwo = arr.reduce((final, n) => (final.push(n*2), final), []);
+		expect(timesTwo).to.have.members([2,6,10,14,18]);
+	});
+
+	it("reduce as filter/map", () => {
+		// multiply every number in array that is lesser than five
+		const arr = [1,3,5,7,9];
+		const timesTwo = arr.reduce((final, n) => (n < 5 && final.push(n*2), final), []);
+		expect(timesTwo).to.have.members([2,6]);
+	});
+
 });
