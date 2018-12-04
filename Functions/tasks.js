@@ -151,4 +151,24 @@ describe ("various tasks", function () {
 		assert.equal(b, 'undefined');
 	});
 
+	it("scalar pipes", () => {
+		const doPipe = fns => data => fns.reduce((value, fn) => fn(value), data);
+		const pipe1 = doPipe([
+			x => x * 2,
+			x => x + 1
+		])
+		assert.equal(pipe1(5), 11);
+	});
+
+	it("Freezing", () => {
+		const mutable = { a: 1 };
+		mutable.a = 2;
+		assert.equal(mutable.a, 2);
+
+		const immutable = { a: 1 };
+		Object.freeze(immutable);
+		immutable.a = 2;
+		assert.equal(immutable.a, 1);
+	});
+
 });
