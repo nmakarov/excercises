@@ -171,4 +171,14 @@ describe ("various tasks", function () {
 		assert.equal(immutable.a, 1);
 	});
 
+	it("required params", () => {
+		const required = () => { throw new Error("Required parameter missing"); }
+		const multiply = (x = required(), y = required()) => x * y;
+
+		assert.equal(multiply(3,4), 12);
+
+		const goingToThrow = () => multiply(5);
+		assert.throws(goingToThrow);
+	});
+
 });
