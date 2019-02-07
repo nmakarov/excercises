@@ -195,4 +195,42 @@ describe ("various tasks", function () {
 		expect(timesTwo).to.have.members([2,6]);
 	});
 
+
+/*
+EcmaScript 6 (AKA ES6, EcmaScript 2015, Harmony)
+This version added several big changes in 2015, namely:
+•	Promises.
+•	Modules;
+•	Classes;
+•	Block-scoped variable declarations (let);
+•	Arrow functions;
+•	Template literal;
+•	Spread operator;
+•	De-structuring assignment;
+•	Parameter default values;
+•	Rest parameters;
+•	Symbols;
+•	Generator functions.
+*/
+
+// escape regex:
+// https://tproger.ru/explain/replace-substrings-in-js/
+
+
+});
+
+describe("Array unique", () => {
+	const arr = [1,3,5,3,9,7,1,3];
+	const useSet = arr => [...new Set(arr)];
+	const useFilter = arr => arr.filter((v, i) => arr.indexOf(v) === i);
+	const useReduce = arra => arr.reduce((acc, i) => (acc.includes(i) ? acc : [i, ...acc]), []);
+	it("Set", () => {
+		expect(useSet(arr).sort()).to.deep.eq([1,3,5,7,9]);
+	});
+	it("Filter", () => {
+		expect(useFilter(arr).sort()).to.deep.eq([1,3,5,7,9]);
+	});
+	it("Reduce", () => {
+		expect(useReduce(arr).sort()).to.deep.eq([1,3,5,7,9]);
+	});
 });
