@@ -2,21 +2,23 @@ const expect = require('chai').expect;
 
 const ITERS = 1000;
 
-const fibonacciRecursive = n => {
-    return n < 2 ? n : fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
+const fibonacciRecursive = n => 
+    n < 2 ? n : fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
+
+
+const fibonacciStraight = n => {
+    const fibs = [ 0, 1 ];
+    for (let i = 2; i<=n; i++) {
+        fibs.push(fibs[i-1] + fibs[i-2]);
+    }
+    return fibs[n];
 }
 
-const memoFibonacciRecursive = (n, m) => {
-    m = m || [ 0, 1 ];
-    if (n < 2) {
-        return n;
-    } else if (m[n]) {
-        return m[n];
-    }
-    const m1 = memoFibonacciRecursive(n-1, m);
-    const m2 = memoFibonacciRecursive(n-2, m);
-    return m[n] = m1 + m2;
-}
+const memoFibonacciRecursive = (n, m=[0,1]) => 
+    n < 2 ? n :
+    m[n] ? m[n] :
+    m[n] = memoFibonacciRecursive(n-1, m) + memoFibonacciRecursive(n-2, m)
+
 
 describe("Testing fibonacci funcs", () => {
     const facts = {
@@ -43,6 +45,13 @@ describe("Testing fibonacci funcs", () => {
             expect(+memoFibonacciRecursive(k)).eq(facts[k]);
         }
     });
+
+    it("Straight", () => {
+        for (var k in facts) {
+            expect(+fibonacciStraight(k)).eq(facts[k]);
+        }
+    });
+
 });
 
 describe("Performance", () => {
@@ -50,6 +59,15 @@ describe("Performance", () => {
         const start = new Date;
         for(let i = ITERS; i--;) {
             fibonacciRecursive(25);
+        }
+        const end = new Date;
+        console.info(">> performance:", (end-start)/1000);
+    });
+
+    it("Straight", () => {
+        const start = new Date;
+        for(let i = ITERS; i--;) {
+            fibonacciStraight(25);
         }
         const end = new Date;
         console.info(">> performance:", (end-start)/1000);

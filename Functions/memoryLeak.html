@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <h1>Memory leak demonstration</h1>
+        <script>
+            function ml () {
+                let bigstring = "a".repeat(15).repeat(1000000).repeat(10);
+                let s = bigstring.substr(1, 25);
+                return s;
+            }
+
+            const a = [];
+            let i = 0;
+
+            const t = setInterval( () => {
+                let s = ml();
+                // s = s.split('').join('');
+                a.push(s);
+                console.info(`>> (${i}): now the allocated size should be`, JSON.stringify(a).length);
+                if (i++ > 20) {
+                    clearInterval(t);
+                }
+            }, 100);
+        </script>
+    </body>
+</html>
