@@ -280,3 +280,23 @@ describe ("null – what is it", function () {
 		}
 	});
 });
+
+describe("fun with parseInt", () => {
+	it("what?", () => {
+		const arr = [1, 2, 11].map(parseInt);
+		expect(arr[0]).to.eq(1);
+		expect(arr[1]).to.be.NaN;
+		expect(arr[2]).to.eq(3);
+	});
+
+	it("well...", () => {
+		const arr = [1, 2, 11].map((value, index, array) => parseInt(value, index, array));
+		// so, here are the params of each of the three iterations:
+		// 1. 1, 0, [1, 2, 11] --> parseInt of 1 by radix 0 == 1, ok
+		// 2. 2, 1, [1, 2, 11] --> parseInt of 2 by radix 1 == NaN since 2 is not valid in that radix
+		// 3. 11, 2, [1, 2, 11] --> parseInt of 11 by radix 2 == 3 since binary 11 means 1*(2*0) + 1*(2*1) == 3 by radix 10
+		expect(arr[0]).to.eq(1);
+		expect(arr[1]).to.be.NaN;
+		expect(arr[2]).to.eq(3);
+	});
+});

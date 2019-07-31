@@ -4,6 +4,7 @@
   "description": "Excercises ==========",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.5.4",
     "chai": "^3.5.0",
     "expect": "^1.20.1"
   },

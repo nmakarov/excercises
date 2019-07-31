@@ -1,3 +1,5 @@
+// data sets: https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html
+
 const expect = require('chai').expect;
 
 const sets = {

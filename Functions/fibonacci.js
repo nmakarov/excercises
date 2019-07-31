@@ -14,6 +14,8 @@ const fibonacciStraight = n => {
     return fibs[n];
 }
 
+const memoFibonacciStraight = (n, )
+
 const memoFibonacciRecursive = (n, m=[0,1]) => 
     n < 2 ? n :
     m[n] ? m[n] :

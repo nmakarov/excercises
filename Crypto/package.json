@@ -1,0 +1,15 @@
+{
+  "name": "crypt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ursa.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsencrypt": "^3.0.0-rc.1",
+    "ursa": "github:JoshKaufman/ursa"
+  }
+}
