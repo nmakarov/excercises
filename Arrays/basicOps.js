@@ -44,5 +44,29 @@ describe("randoms", () => {
         expect(token).not.eq([...""+token].sort().join(""));
     });
 
+describe("filling with [0, ..., N-1]", () => {
+    const n = 10;
+    const test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+    
+    it("take 1", () => {
+        const arr = Array.apply(null, {length: n}).map(Function.call, Number);    
+        expect(arr).to.deep.equal(test);
+    });
+
+    it("take 2", () => {
+        const arr = Array.from(new Array(n), (val, index) => index);
+        expect(arr).to.deep.equal(test);
+    });
+
+    it("take 3", () => {
+        const arr = Array.from(Array(n).keys());
+        expect(arr).to.deep.equal(test);
+    });
+
+    
+    
+});
+
+
 });
 
