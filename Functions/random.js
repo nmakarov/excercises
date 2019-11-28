@@ -15,3 +15,20 @@ describe("Generator #1", () => {
     });
     
 });
+
+describe("Other random things", () => {
+    it("Tokens", () => {
+        const tokenGen = () => (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+        for (let i=10; i--;) {
+            console.info("token:", tokenGen());
+        }
+    });
+
+    it("uuids", () => {
+        const four = () => Math.random().toString(16).slice(-4);
+        const uuid = () => `${four()}${four()}-${four()}-${four()}-${four()}-${four()}${four()}${four()}`;
+        for (let i=10; i--;) {
+            console.info("uuid:", uuid());
+        }
+    });
+});
