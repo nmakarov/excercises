@@ -300,3 +300,23 @@ describe("fun with parseInt", () => {
 		expect(arr[2]).to.eq(3);
 	});
 });
+
+describe("Banana?", () => {
+	it("yep", () => {
+		expect(("b" + "a" + + "a" + "a").toLowerCase()).eql("banana");
+	});
+});
+
+describe("Arrays", () => {
+	it("adding", () => {
+		expect([1,3,5] + [2,4,6]).eql("1,3,52,4,6");
+	});
+});
+
+describe("ParseInt", () => {
+	it("gitch?", () => {
+		expect(parseInt(null, 24)).eql(23);
+	})
+});
+
+
