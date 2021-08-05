@@ -1,0 +1,4 @@
+const Room = class {
+
+};
+
