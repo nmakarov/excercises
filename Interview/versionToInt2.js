@@ -49,11 +49,5 @@ describe("conversions", () => {
 
         expect(compareVersion("v3.00.22", "v3.00.22.15")).eq("equal");
         expect(compareVersion("v3.00.22.15", "v3.00.22")).eq("equal");
-
-
-        // expect(convertVersion("v20.3.0336.13") < convertVersion("v20.3.0336.14")).eq(true);
-        // expect(convertVersion("v20.3.0336.13") < convertVersion("v20.3.0337.13")).eq(true);
-        // expect(convertVersion("v20.3.0336.13") < convertVersion("v20.3.033512.13")).eq(false);
-        // expect(convertVersion("v20.3.033612.13") < convertVersion("v20.3.0337.13")).eq(true);
     });
 });
