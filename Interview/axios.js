@@ -16,17 +16,16 @@ const makeGetRequest = async (url, headers, params) => {
         return { status: response.status, data: response.data };
     }
     return { status: null, data: response.data };
-    // return [ null, response.data ];
 }
 
-const makeGetRequestWrapper = async (...) {
+const makeGetRequestWrapper = async (url, headers, params) => {
     try {
-        let response = await makeGetRequest(...);
+        let response = await makeGetRequest(url, headers, params);
         if ( ! response.status) {
             return response.data;
         }
     } catch (e) {
-
+        return null;
     }
 }
 
