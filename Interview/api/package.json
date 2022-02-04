@@ -1,0 +1,29 @@
+{
+  "name": "api-interview-task",
+  "version": "1.0.0",
+  "description": "API Interview Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "unit": "npx jest",
+    "unit:watch": "npx jest --watchAll",
+    "lint": "eslint server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "http-errors": "^2.0.0",
+    "jest": "^27.4.7",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^9.2.0",
+    "nodemon": "^2.0.15",
+    "sinon": "^13.0.0",
+    "sinon-chai": "^3.7.0",
+    "statuses": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0"
+  }
+}
