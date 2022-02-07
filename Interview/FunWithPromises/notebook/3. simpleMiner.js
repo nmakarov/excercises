@@ -3,15 +3,19 @@ const chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
+// TODO:
+// minerFunctionPromise vs. minerPromise
 const Miner = (successRate=100) => {
     return () => new Promise((resolve, reject) => {
         const chance = Math.random() * 100;
         if (chance < successRate) {
             console.info(">> chance is good enough:", chance);
-            resolve(1);
+            // resolve(1);
+            setTimeout(() => resolve(1), 1);
         } else {
             console.info(">> chance is too low:", chance);
-            reject("nothing is mined");
+            // reject(`nothing is mined: ${chance}`);
+            setTimeout(() => reject(`nothing is mined: ${chance}`), 1);
         }
     });
 };
@@ -85,30 +89,23 @@ describe("Mining", () => {
         expect(coins).to.equal(10);
     });
 
-    it("Can surely mine 10 coins the right way using forEachAsync", async () => {
-        const mine10coins = async miners => {
-            let coins = 0;
-            miners.forEachAsync(async miner => {
-                coins += await miner();
-            });
-            return coins;
-        };
+    xit("Can surely mine 10 coins the right way using forEachAsync", async () => {
+        const forEachAsync = async (arr, fn) => {
+            for (let el of arr) {
+                await fn(el);
+            }
+        }
+
         const miners = [];
         for (let i = 1; i <= 10; i++) {
             miners.push(Miner(100));
         }
 
-        miners.forEachAsync = async func => {
-            // TODO: find how to get to the `length` prop from an array
-            console.info(">> forEachAsync is called with", func, ", this.length:", this.length);
-            for (let i = 0; i < this.length; i++) {
-                console.info(`>> forEachAsync looking at the ${i} element`);
-                await func(this[i]);
-            }
-        }
+        let coins = 0;
+        await forEachAsync(miners, async miner => {
+            coins += await miner();
+        });
 
-
-        const coins = await mine10coins(miners);
         expect(coins).to.equal(10);
     });
 
@@ -133,5 +130,21 @@ describe("Mining", () => {
         const miner = Miner(5);
         const coins = await mine10coins(miner);
         expect(coins).to.equal(10);
+    });
+
+    it("Can fail if one of the promises failed", async () => {
+        const miners = [];
+        miners.push(Miner(100)());
+        for (let i = 1; i <= 8; i++) {
+            miners.push(Miner(50)());
+        }
+        miners.push(Miner(0));
+
+        try {
+            const results = await Promise.all(miners);
+            console.info(">> results:", results);
+        } catch (e) {
+            console.info(">> error:", e);
+        }
     });
 });

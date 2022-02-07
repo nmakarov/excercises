@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "chai-as-promised": "^7.1.1",
-    "mocha": "^9.2.0"
+    "express": "^4.17.2",
+    "jest": "^27.5.0",
+    "mocha": "^9.2.0",
+    "nodemon": "^2.0.15",
+    "sinon-chai": "^3.7.0",
+    "supertest": "^6.2.2"
   }
 }
