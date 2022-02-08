@@ -147,4 +147,6 @@ describe("Mining", () => {
             console.info(">> error:", e);
         }
     });
+
+    // can not fail if some promises failed (return all results - successful or not)
 });

@@ -1,7 +1,7 @@
+// npx jest notebook/6.testServer.test.js
+
 const chai = require("chai");
-const sinon = require("sinon");
-const sinonChai = require("sinon-chai");
-chai.use(sinonChai);
+// const sinon = require("sinon");
 const request = require("supertest");
 const { expect } = chai;
 const { add } = require("../server/handlers");
@@ -10,13 +10,9 @@ const { app } = require("../server/server");
 describe("Testing handlers", () => {
     it("handler for /add works", () => {
         const req = { query: { x: 3, y: 4 }};
-        // TODO: replace `jest.fn()` with `spy`
-        // const res = { json: jest.fn() };
-        const res = { json: () => {} };
-        const spy = jest.spyOn(res, "json");
+        const res = { json: jest.fn() };
         add(req, res);
-        // expect(res.json.mock.calls[0][0].value).to.equal(7);
-        expect(res.json).to.have.been.calledOnce;
+        expect(res.json.mock.calls[0][0].value).to.equal(7);
     });
 });
 

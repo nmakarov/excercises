@@ -31,4 +31,22 @@ describe("Simple promise", () => {
             promise(3)
         ])).to.deep.equal([4,6]);
     });
+
+    it("Can make promises run in parallel even if some are rejected", async () => {
+        const success = x => new Promise(resolve => resolve(x*2));
+        const failure = () => new Promise((_, reject) => reject("failed"));
+
+        const results = await Promise.allSettled([
+            success(2),
+            failure(),
+            success(3),
+        ]);
+        expect(results).to.deep.equal([
+            { status: 'fulfilled', value: 4 },
+            { status: 'rejected', reason: 'failed' },
+            { status: 'fulfilled', value: 6 }
+        ]);
+    });
+
+    // extra bonus: if Promise.allSettled is not available? Make a home grown one
 });
