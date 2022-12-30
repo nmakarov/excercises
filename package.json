@@ -7,7 +7,7 @@
     "bluebird": "^3.5.4",
     "chai": "^4.3.6",
     "expect": "^1.20.1",
-    "mocha": "^7.1.0"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
